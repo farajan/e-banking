@@ -2,14 +2,14 @@ package com.example.bankaccount.service;
 
 import com.example.bankaccount.db.entity.BankAccount;
 import com.example.bankaccount.db.repository.BankAccountRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BankAccountService {
 
     private final BankAccountRepository bankAccountRepository;

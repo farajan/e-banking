@@ -2,14 +2,14 @@ package com.example.bankaccount.controller;
 
 import com.example.bankaccount.db.entity.BankAccount;
 import com.example.bankaccount.service.BankAccountService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BankAccountController {
 
     private final BankAccountService bankAccountService;

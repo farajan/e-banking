@@ -1,12 +1,12 @@
 package com.example.user.service;
 
 import com.example.user.dto.BankAccountDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BankAccountService {
 
     private final RestTemplate restTemplate;

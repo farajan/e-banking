@@ -5,14 +5,14 @@ import com.example.user.db.repository.UserRepository;
 import com.example.user.dto.BankAccountDto;
 import com.example.user.dto.InsuranceDto;
 import com.example.user.dto.UserDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class UserService {
 

@@ -2,13 +2,13 @@ package com.example.insurance.service;
 
 import com.example.insurance.db.entity.Insurance;
 import com.example.insurance.db.repository.InsuranceRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class InsuranceService {
 
     private final InsuranceRepository insuranceRepository;

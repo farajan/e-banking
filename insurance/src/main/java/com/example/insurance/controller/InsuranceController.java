@@ -2,14 +2,14 @@ package com.example.insurance.controller;
 
 import com.example.insurance.db.entity.Insurance;
 import com.example.insurance.service.InsuranceService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class InsuranceController {
 
     private final InsuranceService insuranceService;

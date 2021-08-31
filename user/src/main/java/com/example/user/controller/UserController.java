@@ -3,14 +3,14 @@ package com.example.user.controller;
 import com.example.user.db.entity.User;
 import com.example.user.dto.UserDto;
 import com.example.user.service.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
