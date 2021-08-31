@@ -1,15 +1,17 @@
 package com.example.ebanking.insurance.controller;
 
-import com.example.ebanking.insurance.db.entity.Insurance;
+import com.example.ebanking.insurance.dto.InsuranceRequest;
+import com.example.ebanking.insurance.dto.InsuranceResponse;
 import com.example.ebanking.insurance.service.InsuranceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
-@RequestMapping
+@RequestMapping("insurance")
 @RequiredArgsConstructor
 public class InsuranceController {
 
@@ -21,19 +23,24 @@ public class InsuranceController {
     }
 
     @GetMapping
-    public List<Insurance> getAll() {
+    public List<InsuranceResponse> getAll() {
         return insuranceService.findAll();
     }
 
     @GetMapping("{id}")
-    public Insurance getById(@PathVariable long id) {
+    public InsuranceResponse getById(@PathVariable long id) {
         return insuranceService.findById(id);
+    }
+
+    @PostMapping("getByIds")
+    public List<InsuranceResponse> getByIds(@RequestBody Set<Long> ids) {
+        return insuranceService.findByIds(ids);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Insurance create(@RequestBody Insurance insurance) {
-        return insuranceService.create(insurance);
+    public InsuranceResponse create(@RequestBody InsuranceRequest insuranceRequest) {
+        return insuranceService.create(insuranceRequest);
     }
 
     @DeleteMapping("{id}")

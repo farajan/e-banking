@@ -1,5 +1,6 @@
 package com.example.ebanking.user.exception;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class ExceptionController {
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler({IllegalArgumentException.class})
+    @ExceptionHandler({IllegalArgumentException.class, ServiceException.class})
     public void handleConflict(Exception exception, HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.CONFLICT.value(), exception.getMessage());
     }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class BankAccountDto {
+public class BankAccountResponse {
     private long bankAccountId;
     private String accountNumber;
     private boolean active;

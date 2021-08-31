@@ -1,6 +1,6 @@
 package com.example.ebanking.user.db.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +10,8 @@ import java.util.Set;
 
 @Data
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class User {
 
     @Id

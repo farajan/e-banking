@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class InsuranceDto {
+public class InsuranceResponse {
     private long insuranceId;
     private String type;
     private String note;

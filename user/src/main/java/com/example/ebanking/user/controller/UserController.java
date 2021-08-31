@@ -1,17 +1,17 @@
 package com.example.ebanking.user.controller;
 
 import com.example.ebanking.user.db.entity.User;
-import com.example.ebanking.user.dto.UserDto;
+import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("user")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -28,14 +28,14 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public UserDto getById(@PathVariable long id) {
+    public UserResponse getById(@PathVariable long id) {
         return userService.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user) {
-        return userService.create(user);
+    public UserResponse create(@RequestBody UserRequest userRequest) {
+        return userService.create(userRequest);
     }
 
     @DeleteMapping("{id}")
@@ -45,22 +45,22 @@ public class UserController {
     }
 
     @PostMapping("{userId}/addBankAccount/{bankAccountId}")
-    public UserDto addBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
+    public UserResponse addBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
         return userService.addBankAccount(userId, bankAccountId);
     }
 
     @PostMapping("{userId}/deleteBankAccount/{bankAccountId}")
-    public UserDto deleteBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
+    public UserResponse deleteBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
         return userService.deleteBankAccount(userId, bankAccountId);
     }
 
     @PostMapping("{userId}/addInsurance/{insuranceId}")
-    public UserDto addInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
+    public UserResponse addInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
         return userService.addInsurance(userId, insuranceId);
     }
 
     @PostMapping("{userId}/deleteInsurance/{insuranceId}")
-    public UserDto deleteInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
+    public UserResponse deleteInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
         return userService.deleteInsurance(userId, insuranceId);
     }
 

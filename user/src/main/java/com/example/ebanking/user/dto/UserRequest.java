@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Value
-public class UserResponse {
+public class UserRequest {
     long userId;
     String firstName;
     String lastName;
     String username;
+    String password;
     LocalDateTime birthday;
-    List<BankAccountResponse> bankAccountList;
-    List<InsuranceResponse> insuranceList;
 }

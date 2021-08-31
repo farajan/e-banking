@@ -1,18 +1,47 @@
 package com.example.ebanking.user.service;
 
-import com.example.ebanking.user.dto.BankAccountDto;
+import com.example.ebanking.user.dto.BankAccountResponse;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.service.spi.ServiceException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class BankAccountService {
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
 
-    public BankAccountDto findById(long id) {
-        return restTemplate.getForObject("http://localhost:8762/bank-account-service/" + id, BankAccountDto.class);
+    public BankAccountResponse findById(long id) {
+        return webClient
+                .get()
+                .uri("http://localhost:8762/bank-account-service/bankAccount/" + id)
+                .retrieve()
+                .onStatus(
+                        httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
+                        response -> Mono.error(new ServiceException("Request failed: bank-account-service getById() method."))
+                )
+                .bodyToMono(BankAccountResponse.class).block();
     }
 
+    public List<BankAccountResponse> getByIds(Set<Long> bankAccountIds) {
+        return webClient
+                .post()
+                .uri("http://localhost:8762/bank-account-service/bankAccount/getByIds")
+                .body(Mono.just(bankAccountIds), new ParameterizedTypeReference<Set<Long>>() {})
+                .retrieve()
+                .onStatus(
+                        httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
+                        response -> Mono.error(new ServiceException("Request failed: bank-account-service getByIds() method."))
+                )
+                .bodyToFlux(BankAccountResponse.class)
+                .collectList()
+                .block();
+    }
 }
