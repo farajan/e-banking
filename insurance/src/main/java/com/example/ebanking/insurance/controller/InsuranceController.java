@@ -3,6 +3,7 @@ package com.example.ebanking.insurance.controller;
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.service.InsuranceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class InsuranceController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Insurance create(@RequestBody Insurance insurance) {
         return insuranceService.create(insurance);
     }

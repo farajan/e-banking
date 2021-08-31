@@ -3,6 +3,7 @@ package com.example.ebanking.bankaccount.controller;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.service.BankAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class BankAccountController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public BankAccount create(@RequestBody BankAccount bankAccount) {
         return bankAccountService.create(bankAccount);
     }
