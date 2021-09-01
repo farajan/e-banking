@@ -27,7 +27,9 @@ public class BankAccountService {
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
                         response -> Mono.error(new ServiceException("Request failed: bank-account-service getById() method."))
                 )
-                .bodyToMono(BankAccountResponse.class).block();
+                .bodyToMono(BankAccountResponse.class)
+                .blockOptional()
+                .orElse(null);
     }
 
     public List<BankAccountResponse> getByIds(Set<Long> bankAccountIds) {
@@ -42,6 +44,7 @@ public class BankAccountService {
                 )
                 .bodyToFlux(BankAccountResponse.class)
                 .collectList()
-                .block();
+                .blockOptional()
+                .orElse(null);
     }
 }

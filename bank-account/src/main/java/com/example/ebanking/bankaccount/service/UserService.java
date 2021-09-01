@@ -22,7 +22,9 @@ public class UserService {
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
                         response -> Mono.error(new ServiceException("Request failed: bank-account-service isBankAccountUsed() method."))
                 )
-                .bodyToMono(boolean.class).block();
+                .bodyToMono(boolean.class)
+                .blockOptional()
+                .orElse(null);
 
         if (result == null) {
             throw new IllegalStateException("Response body is null: bank-account-service isBankAccountUsed() method.");

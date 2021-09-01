@@ -18,7 +18,7 @@ public class InsuranceService {
 
     private final WebClient webClient;
 
-    public Mono<InsuranceResponse> findById(long id) {
+    public InsuranceResponse findById(long id) {
         return webClient
                 .get()
                 .uri("http://localhost:8762/insurance-service/insurance/" + id)
@@ -27,7 +27,9 @@ public class InsuranceService {
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
                         response -> Mono.error(new ServiceException("Request failed: insurance-service getById() method."))
                 )
-                .bodyToMono(InsuranceResponse.class);
+                .bodyToMono(InsuranceResponse.class)
+                .blockOptional()
+                .orElse(null);
     }
 
     public List<InsuranceResponse> getByIds(Set<Long> insuranceIds) {
@@ -42,7 +44,8 @@ public class InsuranceService {
                 )
                 .bodyToFlux(InsuranceResponse.class)
                 .collectList()
-                .block();
+                .blockOptional()
+                .orElse(null);
     }
 
 }
