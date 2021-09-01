@@ -1,6 +1,5 @@
 package com.example.ebanking.user.controller;
 
-import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.UserRequest;
 import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.UserService;
@@ -23,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAll() {
+    public List<UserResponse> getAll() {
         return userService.findAll();
     }
 

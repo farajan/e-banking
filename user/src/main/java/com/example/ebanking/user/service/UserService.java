@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,8 +23,12 @@ public class UserService {
     private final UserResponseMapper userResponseMapper;
     private final UserRequestMapper userRequestMapper;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserResponse> findAll() {
+        return userRepository
+                .findAll()
+                .stream()
+                .map(userResponseMapper::mapFromEntity)
+                .collect(Collectors.toList());
     }
 
     @Transactional

@@ -55,6 +55,7 @@ public class InsuranceService {
         );
     }
 
+    @Transactional
     public void delete(long id) {
         if (userService.isInsuranceUsed(id)) {
             throw new IllegalArgumentException("This insurance can not be deleted because is used by a user.");
