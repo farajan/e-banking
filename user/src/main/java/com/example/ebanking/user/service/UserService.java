@@ -1,11 +1,11 @@
 package com.example.ebanking.user.service;
 
 import com.example.ebanking.user.db.entity.User;
-import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.dto.UserRequest;
 import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.mapper.UserRequestMapper;
 import com.example.ebanking.user.service.mapper.UserResponseMapper;
+import com.example.ebanking.user.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package com.example.ebanking.insurance.controller;
 
+import com.example.ebanking.insurance.service.InsuranceService;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
-import com.example.ebanking.insurance.service.InsuranceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.example.ebanking.user.service.mapper;
 
-import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.db.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component

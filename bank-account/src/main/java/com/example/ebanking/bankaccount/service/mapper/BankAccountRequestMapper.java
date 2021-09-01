@@ -1,7 +1,7 @@
 package com.example.ebanking.bankaccount.service.mapper;
 
-import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.dto.BankAccountRequest;
+import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import org.springframework.stereotype.Component;
 
 @Component
