@@ -1,4 +1,4 @@
-package com.example.ebanking.insurance.service.mapper;
+package com.example.ebanking.insurance.controller.mapper;
 
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.dto.InsuranceResponse;

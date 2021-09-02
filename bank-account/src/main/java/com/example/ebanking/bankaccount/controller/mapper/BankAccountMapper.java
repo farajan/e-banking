@@ -1,4 +1,4 @@
-package com.example.ebanking.bankaccount.service.mapper;
+package com.example.ebanking.bankaccount.controller.mapper;
 
 import com.example.ebanking.bankaccount.dto.BankAccountResponse;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;

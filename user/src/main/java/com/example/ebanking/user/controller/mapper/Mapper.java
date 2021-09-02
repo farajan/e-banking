@@ -1,4 +1,4 @@
-package com.example.ebanking.insurance.service.mapper;
+package com.example.ebanking.user.controller.mapper;
 
 public interface Mapper<E, D> {
     D map(E entity);
