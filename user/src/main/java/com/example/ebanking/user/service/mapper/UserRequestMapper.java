@@ -10,11 +10,11 @@ public class UserRequestMapper implements Mapper<User, UserRequest> {
     @Override
     public User mapToEntity(UserRequest userRequest) {
         User user = new User();
-        user.setUserId(userRequest.getUserId());
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setUsername(userRequest.getUsername());
         user.setPassword(userRequest.getPassword());
+        user.setEmail(userRequest.getEmail());
         user.setBirthday(userRequest.getBirthday());
         return user;
     }
@@ -22,11 +22,11 @@ public class UserRequestMapper implements Mapper<User, UserRequest> {
     @Override
     public UserRequest mapFromEntity(User entity) {
         return new UserRequest(
-                entity.getUserId(),
                 entity.getFirstName(),
                 entity.getLastName(),
                 entity.getUsername(),
                 entity.getPassword(),
+                entity.getEmail(),
                 entity.getBirthday()
         );
     }

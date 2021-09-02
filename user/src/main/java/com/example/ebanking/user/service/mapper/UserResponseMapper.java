@@ -27,6 +27,7 @@ public class UserResponseMapper implements Mapper<User, UserResponse> {
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
         user.setBirthday(dto.getBirthday());
         return user;
     }
@@ -38,6 +39,7 @@ public class UserResponseMapper implements Mapper<User, UserResponse> {
                 entity.getFirstName(),
                 entity.getLastName(),
                 entity.getUsername(),
+                entity.getEmail(),
                 entity.getBirthday(),
                 getBankAccountList(entity),
                 getInsuranceList(entity)

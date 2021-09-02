@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class BankAccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BankAccountResponse create(@RequestBody BankAccountRequest bankAccountRequest) {
+    public BankAccountResponse create(@RequestBody @Valid BankAccountRequest bankAccountRequest) {
         return bankAccountService.create(bankAccountRequest);
     }
 

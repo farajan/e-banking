@@ -8,13 +8,15 @@ import com.example.ebanking.user.service.mapper.UserResponseMapper;
 import com.example.ebanking.user.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
+@Validated
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;

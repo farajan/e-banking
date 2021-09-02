@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class InsuranceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InsuranceResponse create(@RequestBody InsuranceRequest insuranceRequest) {
+    public InsuranceResponse create(@RequestBody @Valid InsuranceRequest insuranceRequest) {
         return insuranceService.create(insuranceRequest);
     }
 

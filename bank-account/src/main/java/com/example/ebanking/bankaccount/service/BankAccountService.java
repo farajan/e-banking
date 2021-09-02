@@ -8,6 +8,7 @@ import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class BankAccountService {
 
@@ -53,8 +55,8 @@ public class BankAccountService {
 
     @Transactional
     public BankAccountResponse create(BankAccountRequest bankAccountRequest) {
-        bankAccountRequest.setCreated(LocalDateTime.now());
         final BankAccount bankAccount = bankAccountRequestMapper.mapToEntity(bankAccountRequest);
+        bankAccount.setCreated(LocalDateTime.now());
         return bankAccountResponseMapper.mapFromEntity(
                 bankAccountRepository.save(bankAccount)
         );

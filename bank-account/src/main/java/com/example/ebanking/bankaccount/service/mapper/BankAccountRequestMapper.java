@@ -10,22 +10,18 @@ public class BankAccountRequestMapper implements Mapper<BankAccount, BankAccount
     @Override
     public BankAccount mapToEntity(BankAccountRequest bankAccountRequest) {
         BankAccount bankAccount = new BankAccount();
-        bankAccount.setBankAccountId(bankAccountRequest.getBankAccountId());
         bankAccount.setAccountNumber(bankAccountRequest.getAccountNumber());
         bankAccount.setActive(bankAccountRequest.isActive());
         bankAccount.setBalance(bankAccountRequest.getBalance());
-        bankAccount.setCreated(bankAccountRequest.getCreated());
         return bankAccount;
     }
 
     @Override
     public BankAccountRequest mapFromEntity(BankAccount entity) {
         return new BankAccountRequest(
-                entity.getBankAccountId(),
                 entity.getAccountNumber(),
                 entity.isActive(),
-                entity.getBalance(),
-                entity.getCreated()
+                entity.getBalance()
         );
     }
 
