@@ -96,11 +96,11 @@ public class UserService {
     }
 
     public boolean isBankAccountUsed(long bankAccountId) {
-        return !userRepository.getUsersByBankAccountIds(bankAccountId).isEmpty();
+        return userRepository.existsUsersByBankAccountIds(bankAccountId);
     }
 
     public boolean isInsuranceUsed(long insuranceId) {
-        return !userRepository.getUsersByInsuranceIds(insuranceId).isEmpty();
+        return userRepository.existsUsersByInsuranceIds(insuranceId);
     }
 
     private User getUser(long id) {
