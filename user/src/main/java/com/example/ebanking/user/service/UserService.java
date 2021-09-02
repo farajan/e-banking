@@ -6,11 +6,12 @@ import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.service.webClient.BankWebClient;
 import com.example.ebanking.user.service.webClient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Validated
@@ -21,8 +22,8 @@ public class UserService {
     private final InsuranceWebClient insuranceWebClient;
     private final BankWebClient bankWebClient;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     @Transactional

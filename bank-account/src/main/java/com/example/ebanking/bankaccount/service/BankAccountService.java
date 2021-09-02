@@ -5,12 +5,13 @@ import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
 import com.example.ebanking.bankaccount.service.webClient.UserWebClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,8 +22,8 @@ public class BankAccountService {
     private final BankAccountRepository bankAccountRepository;
     private final UserWebClient userWebClient;
 
-    public List<BankAccount> findAll() {
-        return bankAccountRepository.findAll();
+    public Page<BankAccount> findAll(Pageable pageable) {
+        return bankAccountRepository.findAll(pageable);
     }
 
     @Transactional
@@ -35,7 +36,7 @@ public class BankAccountService {
     }
 
 
-    public List<BankAccount> findByIds(Set<Long> ids) {
+    public Iterable<BankAccount> findByIds(Set<Long> ids) {
         return bankAccountRepository.findAllById(ids);
     }
 

@@ -5,6 +5,9 @@ import com.example.ebanking.insurance.service.InsuranceService;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("insurance")
@@ -22,12 +26,14 @@ public class InsuranceController {
     private final InsuranceMapper insuranceMapper;
 
     @GetMapping
-    public List<InsuranceResponse> getAll() {
-        return insuranceService
-                .findAll()
+    public Page<InsuranceResponse> getAll(@RequestParam int page, @RequestParam int limit) {
+        List<InsuranceResponse> insuranceResponseList = insuranceService
+                .findAll(PageRequest.of(page, limit))
                 .stream()
                 .map(insuranceMapper::map)
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(insuranceResponseList);
     }
 
     @GetMapping("{id}")
@@ -39,9 +45,9 @@ public class InsuranceController {
 
     @PostMapping("getByIds")
     public List<InsuranceResponse> getByIds(@RequestBody Set<Long> ids) {
-        return insuranceService
-                .findByIds(ids)
-                .stream()
+        return StreamSupport
+                .stream(insuranceService
+                .findByIds(ids).spliterator(), false)
                 .map(insuranceMapper::map)
                 .collect(Collectors.toList());
     }

@@ -5,10 +5,11 @@ import com.example.ebanking.insurance.db.repository.InsuranceRepository;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
 import com.example.ebanking.insurance.service.webClient.UserWebClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -18,8 +19,8 @@ public class InsuranceService {
     private final InsuranceRepository insuranceRepository;
     private final UserWebClient userWebClient;
 
-    public List<Insurance> findAll() {
-        return insuranceRepository.findAll();
+    public Page<Insurance> findAll(Pageable pageable) {
+        return insuranceRepository.findAll(pageable);
     }
 
     public Insurance findById(long id) {
@@ -30,7 +31,7 @@ public class InsuranceService {
         return insurance;
     }
 
-    public List<Insurance> findByIds(Set<Long> ids) {
+    public Iterable<Insurance> findByIds(Set<Long> ids) {
         return insuranceRepository.findAllById(ids);
     }
 

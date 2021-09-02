@@ -5,6 +5,9 @@ import com.example.ebanking.bankaccount.dto.BankAccountRequest;
 import com.example.ebanking.bankaccount.dto.BankAccountResponse;
 import com.example.ebanking.bankaccount.service.BankAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("bankAccount")
@@ -22,12 +26,14 @@ public class BankAccountController {
     private final BankAccountMapper bankAccountMapper;
 
     @GetMapping
-    public List<BankAccountResponse> getAll() {
-        return bankAccountService
-                .findAll()
+    public Page<BankAccountResponse> getAll(@RequestParam int page, @RequestParam int limit) {
+        List<BankAccountResponse> bankAccountResponseList = bankAccountService
+                .findAll(PageRequest.of(page,limit))
                 .stream()
                 .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(bankAccountResponseList);
     }
 
     @GetMapping("{id}")
@@ -39,9 +45,9 @@ public class BankAccountController {
 
     @PostMapping("getByIds")
     public List<BankAccountResponse> getByIds(@RequestBody Set<Long> ids) {
-        return bankAccountService
-                .findByIds(ids)
-                .stream()
+        return StreamSupport
+                .stream(bankAccountService
+                .findByIds(ids).spliterator(), false)
                 .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
     }

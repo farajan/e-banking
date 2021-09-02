@@ -5,6 +5,9 @@ import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.UserService;
 import com.example.ebanking.user.controller.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +24,14 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping
-    public List<UserResponse> getAll() {
-        return userService
-                .findAll()
+    public Page<UserResponse> getAll(@RequestParam int page, @RequestParam int limit) {
+        List<UserResponse> userResponseList = userService
+                .findAll(PageRequest.of(page, limit))
                 .stream()
                 .map(userMapper::map)
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(userResponseList);
     }
 
     @GetMapping("{id}")
