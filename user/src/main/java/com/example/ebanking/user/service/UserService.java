@@ -6,6 +6,8 @@ import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.mapper.UserRequestMapper;
 import com.example.ebanking.user.service.mapper.UserResponseMapper;
 import com.example.ebanking.user.db.repository.UserRepository;
+import com.example.ebanking.user.service.webClient.BankWebClient;
+import com.example.ebanking.user.service.webClient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -20,8 +22,8 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final InsuranceService insuranceService;
-    private final BankAccountService bankAccountService;
+    private final InsuranceWebClient insuranceWebClient;
+    private final BankWebClient bankWebClient;
     private final UserResponseMapper userResponseMapper;
     private final UserRequestMapper userRequestMapper;
 
@@ -54,7 +56,7 @@ public class UserService {
     @Transactional
     public UserResponse addBankAccount(long userId, long bankAccountId) {
         User user = getUser(userId);
-        if (bankAccountService.findById(bankAccountId) == null) {
+        if (bankWebClient.findById(bankAccountId) == null) {
             throw new IllegalArgumentException("Bank account with id: " + bankAccountId + " doesn't exists.");
         }
         user.getBankAccountIds().add(bankAccountId);
@@ -73,7 +75,7 @@ public class UserService {
     @Transactional
     public UserResponse addInsurance(long userId, long insuranceId) {
         User user = getUser(userId);
-        if (insuranceService.findById(insuranceId) == null) {
+        if (insuranceWebClient.findById(insuranceId) == null) {
             throw new IllegalArgumentException("Insurance with id: " + insuranceId + " doesn't exists.");
         }
         user.getInsuranceIds().add(insuranceId);

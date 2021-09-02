@@ -6,6 +6,7 @@ import com.example.ebanking.bankaccount.service.mapper.BankAccountRequestMapper;
 import com.example.ebanking.bankaccount.service.mapper.BankAccountResponseMapper;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
+import com.example.ebanking.bankaccount.service.webClient.UserWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -25,7 +26,7 @@ public class BankAccountService {
     private final BankAccountRequestMapper bankAccountRequestMapper;
     private final BankAccountResponseMapper bankAccountResponseMapper;
 
-    private final UserService userService;
+    private final UserWebClient userWebClient;
 
     public List<BankAccountResponse> findAll() {
         return bankAccountRepository
@@ -64,7 +65,7 @@ public class BankAccountService {
 
     @Transactional
     public void delete(long id) {
-        if (userService.isBankAccountUsed(id)) {
+        if (userWebClient.isBankAccountUsed(id)) {
             throw new IllegalArgumentException("This bank account can not be deleted because is used by a user.");
         }
         bankAccountRepository.deleteById(id);

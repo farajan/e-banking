@@ -4,8 +4,8 @@ import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
 import com.example.ebanking.user.dto.UserResponse;
-import com.example.ebanking.user.service.BankAccountService;
-import com.example.ebanking.user.service.InsuranceService;
+import com.example.ebanking.user.service.webClient.BankWebClient;
+import com.example.ebanking.user.service.webClient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +17,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserResponseMapper implements Mapper<User, UserResponse> {
 
-    private final InsuranceService insuranceService;
-    private final BankAccountService bankAccountService;
+    private final InsuranceWebClient insuranceWebClient;
+    private final BankWebClient bankWebClient;
 
     @Override
     public User mapToEntity(UserResponse dto) {
@@ -48,12 +48,12 @@ public class UserResponseMapper implements Mapper<User, UserResponse> {
 
     private List<BankAccountResponse> getBankAccountList(User user) {
         Set<Long> bankAccountIds = user.getBankAccountIds();
-        return bankAccountIds.isEmpty() ? Collections.emptyList() : bankAccountService.getByIds(bankAccountIds);
+        return bankAccountIds.isEmpty() ? Collections.emptyList() : bankWebClient.getByIds(bankAccountIds);
     }
 
     private List<InsuranceResponse> getInsuranceList(User user) {
         Set<Long> insuranceIds = user.getInsuranceIds();
-        return insuranceIds.isEmpty() ? Collections.emptyList() : insuranceService.getByIds(insuranceIds);
+        return insuranceIds.isEmpty() ? Collections.emptyList() : insuranceWebClient.getByIds(insuranceIds);
     }
 
 }

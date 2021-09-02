@@ -6,6 +6,7 @@ import com.example.ebanking.insurance.dto.InsuranceRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
 import com.example.ebanking.insurance.service.mapper.InsuranceRequestMapper;
 import com.example.ebanking.insurance.service.mapper.InsuranceResponseMapper;
+import com.example.ebanking.insurance.service.webClient.UserWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class InsuranceService {
 
     private final InsuranceRepository insuranceRepository;
-    private final UserService userService;
+    private final UserWebClient userWebClient;
     private final InsuranceRequestMapper insuranceRequestMapper;
     private final InsuranceResponseMapper insuranceResponseMapper;
 
@@ -57,7 +58,7 @@ public class InsuranceService {
 
     @Transactional
     public void delete(long id) {
-        if (userService.isInsuranceUsed(id)) {
+        if (userWebClient.isInsuranceUsed(id)) {
             throw new IllegalArgumentException("This insurance can not be deleted because is used by a user.");
         }
         insuranceRepository.deleteById(id);

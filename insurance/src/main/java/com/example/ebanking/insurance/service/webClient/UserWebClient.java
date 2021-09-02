@@ -1,4 +1,4 @@
-package com.example.ebanking.insurance.service;
+package com.example.ebanking.insurance.service.webClient;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.service.spi.ServiceException;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Service
 @Validated
 @RequiredArgsConstructor
-public class UserService {
+public class UserWebClient {
 
     private final WebClient webClient;
 
