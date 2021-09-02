@@ -15,25 +15,13 @@ import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
-public class UserResponseMapper implements Mapper<User, UserResponse> {
+public class UserMapper implements Mapper<User, UserResponse> {
 
     private final InsuranceWebClient insuranceWebClient;
     private final BankWebClient bankWebClient;
 
     @Override
-    public User mapToEntity(UserResponse dto) {
-        User user = new User();
-        user.setUserId(dto.getUserId());
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
-        user.setBirthday(dto.getBirthday());
-        return user;
-    }
-
-    @Override
-    public UserResponse mapFromEntity(User entity) {
+    public UserResponse map(User entity) {
         return new UserResponse(
                 entity.getUserId(),
                 entity.getFirstName(),

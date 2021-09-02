@@ -2,8 +2,7 @@ package com.example.ebanking.bankaccount.service;
 
 import com.example.ebanking.bankaccount.dto.BankAccountRequest;
 import com.example.ebanking.bankaccount.dto.BankAccountResponse;
-import com.example.ebanking.bankaccount.service.mapper.BankAccountRequestMapper;
-import com.example.ebanking.bankaccount.service.mapper.BankAccountResponseMapper;
+import com.example.ebanking.bankaccount.service.mapper.BankAccountMapper;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
 import com.example.ebanking.bankaccount.service.webClient.UserWebClient;
@@ -23,16 +22,14 @@ import java.util.stream.Collectors;
 public class BankAccountService {
 
     private final BankAccountRepository bankAccountRepository;
-    private final BankAccountRequestMapper bankAccountRequestMapper;
-    private final BankAccountResponseMapper bankAccountResponseMapper;
-
+    private final BankAccountMapper bankAccountMapper;
     private final UserWebClient userWebClient;
 
     public List<BankAccountResponse> findAll() {
         return bankAccountRepository
                 .findAll()
                 .stream()
-                .map(bankAccountResponseMapper::mapFromEntity)
+                .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +39,7 @@ public class BankAccountService {
         if (bankAccount == null) {
             throw new IllegalStateException("Bank account with id: " + id + " doesn't exists.");
         }
-        return bankAccountResponseMapper.mapFromEntity(bankAccount);
+        return bankAccountMapper.map(bankAccount);
     }
 
 
@@ -50,15 +47,19 @@ public class BankAccountService {
         return bankAccountRepository
                 .findAllById(ids)
                 .stream()
-                .map(bankAccountResponseMapper::mapFromEntity)
+                .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public BankAccountResponse create(BankAccountRequest bankAccountRequest) {
-        final BankAccount bankAccount = bankAccountRequestMapper.mapToEntity(bankAccountRequest);
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setAccountNumber(bankAccountRequest.getAccountNumber());
+        bankAccount.setActive(bankAccountRequest.isActive());
+        bankAccount.setBalance(bankAccountRequest.getBalance());
         bankAccount.setCreated(LocalDateTime.now());
-        return bankAccountResponseMapper.mapFromEntity(
+
+        return bankAccountMapper.map(
                 bankAccountRepository.save(bankAccount)
         );
     }

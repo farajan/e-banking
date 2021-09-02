@@ -3,8 +3,7 @@ package com.example.ebanking.user.service;
 import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.UserRequest;
 import com.example.ebanking.user.dto.UserResponse;
-import com.example.ebanking.user.service.mapper.UserRequestMapper;
-import com.example.ebanking.user.service.mapper.UserResponseMapper;
+import com.example.ebanking.user.service.mapper.UserMapper;
 import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.service.webClient.BankWebClient;
 import com.example.ebanking.user.service.webClient.InsuranceWebClient;
@@ -24,29 +23,34 @@ public class UserService {
     private final UserRepository userRepository;
     private final InsuranceWebClient insuranceWebClient;
     private final BankWebClient bankWebClient;
-    private final UserResponseMapper userResponseMapper;
-    private final UserRequestMapper userRequestMapper;
+    private final UserMapper userMapper;
 
     public List<UserResponse> findAll() {
         return userRepository
                 .findAll()
                 .stream()
-                .map(userResponseMapper::mapFromEntity)
+                .map(userMapper::map)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public UserResponse getById(long id) {
         User user = getUser(id);
-        return userResponseMapper.mapFromEntity(user);
+        return userMapper.map(user);
     }
 
     @Transactional
     public UserResponse create(UserRequest userRequest) {
-        User user = userRepository.save(
-                userRequestMapper.mapToEntity(userRequest)
-        );
-        return userResponseMapper.mapFromEntity(user);
+        User user = new User();
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setUsername(userRequest.getUsername());
+        user.setPassword(userRequest.getPassword());
+        user.setEmail(userRequest.getEmail());
+        user.setBirthday(userRequest.getBirthday());
+
+        User userDB = userRepository.save(user);
+        return userMapper.map(userDB);
     }
 
     public void delete(long id) {

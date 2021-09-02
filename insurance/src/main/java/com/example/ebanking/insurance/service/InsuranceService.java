@@ -4,8 +4,7 @@ import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
-import com.example.ebanking.insurance.service.mapper.InsuranceRequestMapper;
-import com.example.ebanking.insurance.service.mapper.InsuranceResponseMapper;
+import com.example.ebanking.insurance.service.mapper.InsuranceMapper;
 import com.example.ebanking.insurance.service.webClient.UserWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,14 +20,13 @@ public class InsuranceService {
 
     private final InsuranceRepository insuranceRepository;
     private final UserWebClient userWebClient;
-    private final InsuranceRequestMapper insuranceRequestMapper;
-    private final InsuranceResponseMapper insuranceResponseMapper;
+    private final InsuranceMapper insuranceMapper;
 
     public List<InsuranceResponse> findAll() {
         return insuranceRepository
                 .findAll()
                 .stream()
-                .map(insuranceResponseMapper::mapFromEntity)
+                .map(insuranceMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -37,21 +35,25 @@ public class InsuranceService {
         if (insurance == null) {
             throw new IllegalStateException("Insurance with id: " + id + " doesn't exists.");
         }
-        return insuranceResponseMapper.mapFromEntity(insurance);
+        return insuranceMapper.map(insurance);
     }
 
     public List<InsuranceResponse> findByIds(Set<Long> ids) {
         return insuranceRepository
                 .findAllById(ids)
                 .stream()
-                .map(insuranceResponseMapper::mapFromEntity)
+                .map(insuranceMapper::map)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public InsuranceResponse create(InsuranceRequest insuranceRequest) {
-        Insurance insurance = insuranceRequestMapper.mapToEntity(insuranceRequest);
-        return insuranceResponseMapper.mapFromEntity(
+        Insurance insurance = new Insurance();
+        insurance.setType(insuranceRequest.getType());
+        insurance.setNote(insuranceRequest.getNote());
+        insurance.setPrice(insuranceRequest.getPrice());
+
+        return insuranceMapper.map(
                 insuranceRepository.save(insurance)
         );
     }
