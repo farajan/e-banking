@@ -46,5 +46,15 @@ There is also a common package that contains all the common dependencies.
 |                                             | POST        | BankAccounteRequest | BankAccounteResponse         |
 | /{id}                                       | DELETE      |                     | void                         |
 | /getByIds                                   | POST        | Set\<Long\>         | List\<BankAccounteResponse\> |
+
+## Example of requests
+
+http://localhost:8761/ - Eureka server
+
+http://localhost:8762/bankAccount?page=0&limit=20 - get first 20 records of all bank accounts
+
+http://localhost:8762/insurance?page=0&limit=20 - get first 20 records of all insurances
+
+http://localhost:8762/user?page=0&limit=20 - get first 20 records of all users
   
   
