@@ -55,28 +55,28 @@ public class UserController {
         userService.delete(id);
     }
 
-    @PostMapping("{userId}/addBankAccount/{bankAccountId}")
+    @PostMapping("{userId}/bankAccount/{bankAccountId}")
     public UserResponse addBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
         return userMapper.map(
                 userService.addBankAccount(userId, bankAccountId)
         );
     }
 
-    @PostMapping("{userId}/deleteBankAccount/{bankAccountId}")
+    @DeleteMapping("{userId}/bankAccount/{bankAccountId}")
     public UserResponse deleteBankAccount(@PathVariable long userId, @PathVariable long bankAccountId) {
         return userMapper.map(
                 userService.deleteBankAccount(userId, bankAccountId)
         );
     }
 
-    @PostMapping("{userId}/addInsurance/{insuranceId}")
+    @PostMapping("{userId}/insurance/{insuranceId}")
     public UserResponse addInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
         return userMapper.map(
                 userService.addInsurance(userId, insuranceId)
         );
     }
 
-    @PostMapping("{userId}/deleteInsurance/{insuranceId}")
+    @DeleteMapping("{userId}/insurance/{insuranceId}")
     public UserResponse deleteInsurance(@PathVariable long userId, @PathVariable long insuranceId) {
         return userMapper.map(
                 userService.deleteInsurance(userId, insuranceId)
