@@ -3,7 +3,7 @@ package com.example.ebanking.insurance.service;
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
-import com.example.ebanking.insurance.service.webClient.UserWebClient;
+import com.example.ebanking.insurance.service.webclient.UserWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

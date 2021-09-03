@@ -1,8 +1,9 @@
-package com.example.ebanking.user.service.webClient;
+package com.example.ebanking.user.service.webclient;
 
-import com.example.ebanking.user.dto.InsuranceResponse;
+import com.example.ebanking.user.dto.BankAccountResponse;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,38 +15,40 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class InsuranceWebClient {
+public class BankWebClient {
 
     private final WebClient webClient;
 
-    public InsuranceResponse findById(long id) {
+    @Value("${ebanking.bankAccountService.URL}")
+    private String bankAccountServiceURL;
+
+    public BankAccountResponse findById(long id) {
         return webClient
                 .get()
-                .uri("http://localhost:8762/insurance-service/insurance/" + id)
+                .uri(bankAccountServiceURL + id)
                 .retrieve()
                 .onStatus(
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
-                        response -> Mono.error(new ServiceException("Request failed: insurance-service getById() method."))
+                        response -> Mono.error(new ServiceException("Request failed: bank-account-service getById() method."))
                 )
-                .bodyToMono(InsuranceResponse.class)
+                .bodyToMono(BankAccountResponse.class)
                 .blockOptional()
                 .orElse(null);
     }
 
-    public List<InsuranceResponse> getByIds(Set<Long> insuranceIds) {
+    public List<BankAccountResponse> getByIds(Set<Long> bankAccountIds) {
         return webClient
                 .post()
-                .uri("http://localhost:8762/insurance-service/insurance/getByIds")
-                .body(Mono.just(insuranceIds), new ParameterizedTypeReference<Set<Long>>() {})
+                .uri(bankAccountServiceURL + "getByIds")
+                .body(Mono.just(bankAccountIds), new ParameterizedTypeReference<Set<Long>>() {})
                 .retrieve()
                 .onStatus(
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
-                        response -> Mono.error(new ServiceException("Request failed: insurance-service getByIds() method."))
+                        response -> Mono.error(new ServiceException("Request failed: bank-account-service getByIds() method."))
                 )
-                .bodyToFlux(InsuranceResponse.class)
+                .bodyToFlux(BankAccountResponse.class)
                 .collectList()
                 .blockOptional()
                 .orElse(null);
     }
-
 }

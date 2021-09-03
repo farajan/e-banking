@@ -4,8 +4,8 @@ import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
 import com.example.ebanking.user.dto.UserResponse;
-import com.example.ebanking.user.service.webClient.BankWebClient;
-import com.example.ebanking.user.service.webClient.InsuranceWebClient;
+import com.example.ebanking.user.service.webclient.BankWebClient;
+import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

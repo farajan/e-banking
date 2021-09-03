@@ -3,7 +3,7 @@ package com.example.ebanking.bankaccount.service;
 import com.example.ebanking.bankaccount.dto.BankAccountRequest;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
-import com.example.ebanking.bankaccount.service.webClient.UserWebClient;
+import com.example.ebanking.bankaccount.service.webclient.UserWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,11 +1,10 @@
 package com.example.ebanking.user.service;
 
-import com.example.ebanking.user.config.PasswordEncoderConfig;
 import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.UserRequest;
 import com.example.ebanking.user.db.repository.UserRepository;
-import com.example.ebanking.user.service.webClient.BankWebClient;
-import com.example.ebanking.user.service.webClient.InsuranceWebClient;
+import com.example.ebanking.user.service.webclient.BankWebClient;
+import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
