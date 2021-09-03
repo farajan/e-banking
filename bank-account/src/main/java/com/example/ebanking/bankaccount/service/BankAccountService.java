@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -41,7 +42,7 @@ public class BankAccountService {
     }
 
     @Transactional
-    public BankAccount create(BankAccountRequest bankAccountRequest) {
+    public BankAccount create(@Valid BankAccountRequest bankAccountRequest) {
         BankAccount bankAccount = new BankAccount();
         bankAccount.setAccountNumber(bankAccountRequest.getAccountNumber());
         bankAccount.setActive(bankAccountRequest.isActive());

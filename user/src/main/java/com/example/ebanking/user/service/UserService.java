@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @Service
 @Validated
@@ -36,7 +37,7 @@ public class UserService {
     }
 
     @Transactional
-    public User create(UserRequest userRequest) {
+    public User create(@Valid UserRequest userRequest) {
         User user = new User();
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());

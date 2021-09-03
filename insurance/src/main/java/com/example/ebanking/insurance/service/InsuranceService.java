@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.Set;
 
 @Service
@@ -36,7 +37,7 @@ public class InsuranceService {
     }
 
     @Transactional
-    public Insurance create(InsuranceRequest insuranceRequest) {
+    public Insurance create(@Valid InsuranceRequest insuranceRequest) {
         Insurance insurance = new Insurance();
         insurance.setType(insuranceRequest.getType());
         insurance.setNote(insuranceRequest.getNote());
