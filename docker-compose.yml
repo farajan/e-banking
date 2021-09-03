@@ -1,10 +1,11 @@
-version: '3.7'
+version: '3.8'
 services:
 
   netflix-eureka-naming-server:
-    build:
-      context: netflix-eureka-naming-server
-      dockerfile: Dockerfile
+    image: e-banking/eureka:0.0.1-SNAPSHOT
+#    build:
+#      context: netflix-eureka-naming-server
+#      dockerfile: Dockerfile
     ports:
       - "8761:8761"
     restart: always
@@ -12,21 +13,23 @@ services:
       - e-banking-network
 
   netflix-zuul-api-gateway-server:
-    build:
-      context: netflix-zuul-api-gateway-server
-      dockerfile: Dockerfile
+    image: e-banking/zuul:0.0.1-SNAPSHOT
+#    build:
+#      context: netflix-zuul-api-gateway-server
+#      dockerfile: Dockerfile
     ports:
       - "8762:8762"
     restart: always
     depends_on:
       - netflix-eureka-naming-server
     networks:
-      - currency-compose-network
+      - e-banking-network
 
   user-service:
-    build:
-      context: user-service
-      dockerfile: Dockerfile
+    image: e-banking/user:0.0.1-SNAPSHOT
+#    build:
+#      context: user-service
+#      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     restart: always
@@ -36,9 +39,10 @@ services:
       - e-banking-network
 
   bank-account-service:
-    build:
-      context: bank-account-service
-      dockerfile: Dockerfile
+    image: e-banking/bank-account:0.0.1-SNAPSHOT
+#    build:
+#      context: bank-account-service
+#      dockerfile: Dockerfile
     ports:
       - "8001:8001"
     restart: always
@@ -47,17 +51,18 @@ services:
     networks:
       - e-banking-network
 
-    insurance-service:
-      build:
-        context: insurance-service
-        dockerfile: Dockerfile
-      ports:
-        - "8002:8002"
-      restart: always
-      depends_on:
-        - netflix-eureka-naming-server
-      networks:
-        - e-banking-network
+  insurance-service:
+    image: e-banking/insurance:0.0.1-SNAPSHOT
+#    build:
+#      context: insurance-service
+#      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    restart: always
+    depends_on:
+      - netflix-eureka-naming-server
+    networks:
+      - e-banking-network
 
 networks:
   e-banking-network:
