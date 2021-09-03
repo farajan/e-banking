@@ -41,7 +41,7 @@ There is also a common package that contains all the common dependencies.
 ### Bank Account - /bankAccount
 | Method                                      | Method Type | Body                | Response type                |
 | ------------------------------------------- | ----------- | ------------------- | ---------------------------- |
-| /?page=0&limit=100                          | GET         |                     | Page\<BankAccounteResponse\> |
+| ?page=0&limit=100                           | GET         |                     | Page\<BankAccounteResponse\> |
 | /{id}                                       | GET         |                     | BankAccounteResponse         |
 |                                             | POST        | BankAccounteRequest | BankAccounteResponse         |
 | /{id}                                       | DELETE      |                     | void                         |
