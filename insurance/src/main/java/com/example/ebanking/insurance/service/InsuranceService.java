@@ -3,7 +3,7 @@ package com.example.ebanking.insurance.service;
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
-import com.example.ebanking.insurance.service.webclient.UserWebClient;
+import com.example.ebanking.insurance.service.proxy.UserServiceProxy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +18,7 @@ import java.util.Set;
 public class InsuranceService {
 
     private final InsuranceRepository insuranceRepository;
-    private final UserWebClient userWebClient;
+    private final UserServiceProxy userServiceProxy;
 
     public Page<Insurance> findAll(Pageable pageable) {
         return insuranceRepository.findAll(pageable);
@@ -48,7 +48,7 @@ public class InsuranceService {
 
     @Transactional
     public void delete(long id) {
-        if (userWebClient.isInsuranceUsed(id)) {
+        if (userServiceProxy.isInsuranceUsed(id)) {
             throw new IllegalArgumentException("This insurance can not be deleted because is used by a user.");
         }
         insuranceRepository.deleteById(id);

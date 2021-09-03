@@ -3,7 +3,7 @@ package com.example.ebanking.bankaccount.service;
 import com.example.ebanking.bankaccount.dto.BankAccountRequest;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
-import com.example.ebanking.bankaccount.service.webclient.UserWebClient;
+import com.example.ebanking.bankaccount.service.proxy.UserServiceProxy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ import java.util.Set;
 public class BankAccountService {
 
     private final BankAccountRepository bankAccountRepository;
-    private final UserWebClient userWebClient;
+    private final UserServiceProxy userServiceProxy;
 
     public Page<BankAccount> findAll(Pageable pageable) {
         return bankAccountRepository.findAll(pageable);
@@ -54,7 +54,7 @@ public class BankAccountService {
 
     @Transactional
     public void delete(long id) {
-        if (userWebClient.isBankAccountUsed(id)) {
+        if (userServiceProxy.isBankAccountUsed(id)) {
             throw new IllegalArgumentException("This bank account can not be deleted because is used by a user.");
         }
         bankAccountRepository.deleteById(id);
