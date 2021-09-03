@@ -16,23 +16,23 @@ There is also a common package that contains all the common dependencies.
 
 ## REST API
 ### User - /user
-| Method                                      | Method Type | Body        | Response type        |
-| ------------------------------------------- | ----------- | ----------- | -------------------- |
-| /getAll                                     | GET         |             | List\<UserResponse\> |
-| /getById/{id}                               | GET         |             | UserResponse         |
-| /create                                     | POST        | UserRequest | UserResponse         |
-| /delete/{id}                                | DELETE      |             | void                 |
-| /{userId}/addInsurance/{insuranceId}        | POST        |             | UserResponse         |
-| /{userId}/addBankAccount/{bankAccountId}    | POST        |             | UserResponse         |
-| /{userId}/deleteInsurance/{insuranceId}     | POST        |             | UserResponse         |
-| /{userId}/deleteBankAccount/{bankAccountId} | POST        |             | UserResponse         |
-| /isInsuranceUsed/{insuranceId}              | GET         |             | boolean              |
-| /isBankAccountUsed/{bankAccountId}          | GET         |             | boolean              |
+| Method                                | Method Type | Body        | Response type        |
+| ------------------------------------- | ----------- | ----------- | -------------------- |
+| /getAll                               | GET         |             | Page\<UserResponse\> |
+| /getById/{id}                         | GET         |             | UserResponse         |
+| /create                               | POST        | UserRequest | UserResponse         |
+| /delete/{id}                          | DELETE      |             | void                 |
+| /{userId}/insurance/{insuranceId}     | POST        |             | UserResponse         |
+| /{userId}/bankAccount/{bankAccountId} | POST        |             | UserResponse         |
+| /{userId}/insurance/{insuranceId}     | DELETE      |             | UserResponse         |
+| /{userId}/bankAccount/{bankAccountId} | DELETE      |             | UserResponse         |
+| /isInsuranceUsed/{insuranceId}        | GET         |             | boolean              |
+| /isBankAccountUsed/{bankAccountId}    | GET         |             | boolean              |
 
 ### Insurance - /insurance
 | Method                                      | Method Type | Body             | Response type             |
 | ------------------------------------------- | ----------- | ---------------- | ------------------------- |
-| /getAll                                     | GET         |                  | List\<InsuranceResponse\> |
+| /getAll                                     | GET         |                  | Page\<InsuranceResponse\> |
 | /getById/{id}                               | GET         |                  | InsuranceResponse         |
 | /create                                     | POST        | InsuranceRequest | InsuranceResponse         |
 | /delete/{id}                                | DELETE      |                  | void                      |
@@ -41,7 +41,7 @@ There is also a common package that contains all the common dependencies.
 ### Bank Account - /bankAccount
 | Method                                      | Method Type | Body                | Response type                |
 | ------------------------------------------- | ----------- | ------------------- | ---------------------------- |
-| /getAll                                     | GET         |                     | List\<BankAccounteResponse\> |
+| /getAll                                     | GET         |                     | Page\<BankAccounteResponse\> |
 | /getById/{id}                               | GET         |                     | BankAccounteResponse         |
 | /create                                     | POST        | BankAccounteRequest | BankAccounteResponse         |
 | /delete/{id}                                | DELETE      |                     | void                         |
