@@ -18,10 +18,10 @@ There is also a common package that contains all the common dependencies.
 ### User - /user
 | Method                                | Method Type | Body        | Response type        |
 | ------------------------------------- | ----------- | ----------- | -------------------- |
-| /getAll                               | GET         |             | Page\<UserResponse\> |
-| /getById/{id}                         | GET         |             | UserResponse         |
-| /create                               | POST        | UserRequest | UserResponse         |
-| /delete/{id}                          | DELETE      |             | void                 |
+| ?page=0&limit=100                     | GET         |             | Page\<UserResponse\> |
+| /{id}                                 | GET         |             | UserResponse         |
+|                                       | POST        | UserRequest | UserResponse         |
+| /{id}                                 | DELETE      |             | void                 |
 | /{userId}/insurance/{insuranceId}     | POST        |             | UserResponse         |
 | /{userId}/bankAccount/{bankAccountId} | POST        |             | UserResponse         |
 | /{userId}/insurance/{insuranceId}     | DELETE      |             | UserResponse         |
@@ -32,7 +32,7 @@ There is also a common package that contains all the common dependencies.
 ### Insurance - /insurance
 | Method                                      | Method Type | Body             | Response type             |
 | ------------------------------------------- | ----------- | ---------------- | ------------------------- |
-| /getAll                                     | GET         |                  | Page\<InsuranceResponse\> |
+| ?page=0&limit=100                           | GET         |                  | Page\<InsuranceResponse\> |
 | /getById/{id}                               | GET         |                  | InsuranceResponse         |
 | /create                                     | POST        | InsuranceRequest | InsuranceResponse         |
 | /delete/{id}                                | DELETE      |                  | void                      |
@@ -41,10 +41,10 @@ There is also a common package that contains all the common dependencies.
 ### Bank Account - /bankAccount
 | Method                                      | Method Type | Body                | Response type                |
 | ------------------------------------------- | ----------- | ------------------- | ---------------------------- |
-| /getAll                                     | GET         |                     | Page\<BankAccounteResponse\> |
-| /getById/{id}                               | GET         |                     | BankAccounteResponse         |
-| /create                                     | POST        | BankAccounteRequest | BankAccounteResponse         |
-| /delete/{id}                                | DELETE      |                     | void                         |
+| /?page=0&limit=100                          | GET         |                     | Page\<BankAccounteResponse\> |
+| /{id}                                       | GET         |                     | BankAccounteResponse         |
+|                                             | POST        | BankAccounteRequest | BankAccounteResponse         |
+| /{id}                                       | DELETE      |                     | void                         |
 | /getByIds                                   | POST        | Set\<Long\>         | List\<BankAccounteResponse\> |
   
   
