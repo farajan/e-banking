@@ -1,4 +1,7 @@
 # E-banking
+
+> :warning: **This project is not yet finish**: for e.g. JUnit testing, Integration testing, Javadoc, exception handling
+
 Example of simple Spring Boot microservices project using Netflix Eureka and Zuul.
 
 There are three services: User, Insurance, BankAccount.
