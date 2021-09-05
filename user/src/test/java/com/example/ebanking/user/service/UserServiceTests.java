@@ -1,4 +1,4 @@
-package com.example.ebanking.user.JUnit;
+package com.example.ebanking.user.service;
 
 
 import com.example.ebanking.user.db.entity.User;
@@ -6,8 +6,7 @@ import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
 import com.example.ebanking.user.dto.UserRequest;
-import com.example.ebanking.user.service.UserService;
-import com.example.ebanking.user.service.webclient.BankWebClient;
+import com.example.ebanking.user.service.webclient.BankAccountWebClient;
 import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,7 +39,7 @@ public class UserServiceTests {
     private PasswordEncoder passwordEncoder;
 
     @Mock
-    private BankWebClient bankWebClient;
+    private BankAccountWebClient bankAccountWebClient;
 
     @Mock
     private InsuranceWebClient insuranceWebClient;
@@ -112,7 +111,7 @@ public class UserServiceTests {
         InsuranceResponse insuranceResponse = new InsuranceResponse();
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(insuranceWebClient.findById(1L)).thenReturn(insuranceResponse);
+        when(insuranceWebClient.getById(1L)).thenReturn(insuranceResponse);
 
         userService.addInsurance(1L, 1L);
 
@@ -136,7 +135,7 @@ public class UserServiceTests {
         BankAccountResponse bankAccountResponse = new BankAccountResponse();
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(bankWebClient.findById(1L)).thenReturn(bankAccountResponse);
+        when(bankAccountWebClient.getById(1L)).thenReturn(bankAccountResponse);
 
         userService.addBankAccount(1L, 1L);
 

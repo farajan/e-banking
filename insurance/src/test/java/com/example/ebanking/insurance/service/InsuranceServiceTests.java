@@ -1,10 +1,9 @@
-package com.example.ebanking.insurance.JUnit;
+package com.example.ebanking.insurance.service;
 
 
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
 import com.example.ebanking.insurance.dto.InsuranceRequest;
-import com.example.ebanking.insurance.service.InsuranceService;
 import com.example.ebanking.insurance.service.proxy.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;

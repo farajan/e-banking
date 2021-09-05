@@ -3,7 +3,7 @@ package com.example.ebanking.user.service;
 import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.UserRequest;
 import com.example.ebanking.user.db.repository.UserRepository;
-import com.example.ebanking.user.service.webclient.BankWebClient;
+import com.example.ebanking.user.service.webclient.BankAccountWebClient;
 import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final InsuranceWebClient insuranceWebClient;
-    private final BankWebClient bankWebClient;
+    private final BankAccountWebClient bankAccountWebClient;
     private final PasswordEncoder passwordEncoder;
 
     public Page<User> getAll(Pageable pageable) {
@@ -56,7 +56,7 @@ public class UserService {
     @Transactional
     public User addBankAccount(long userId, long bankAccountId) {
         User user = getById(userId);
-        if (bankWebClient.findById(bankAccountId) == null) {
+        if (bankAccountWebClient.getById(bankAccountId) == null) {
             throw new IllegalArgumentException("Bank account with id: " + bankAccountId + " doesn't exists.");
         }
         user.getBankAccountIds().add(bankAccountId);
@@ -73,7 +73,7 @@ public class UserService {
     @Transactional
     public User addInsurance(long userId, long insuranceId) {
         User user = getById(userId);
-        if (insuranceWebClient.findById(insuranceId) == null) {
+        if (insuranceWebClient.getById(insuranceId) == null) {
             throw new IllegalArgumentException("Insurance with id: " + insuranceId + " doesn't exists.");
         }
         user.getInsuranceIds().add(insuranceId);

@@ -46,8 +46,7 @@ public class InsuranceController {
     @PostMapping("getByIds")
     public List<InsuranceResponse> getByIds(@RequestBody Set<Long> ids) {
         return StreamSupport
-                .stream(insuranceService
-                .getByIds(ids).spliterator(), false)
+                .stream(insuranceService.getByIds(ids).spliterator(), false)
                 .map(insuranceMapper::map)
                 .collect(Collectors.toList());
     }

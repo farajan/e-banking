@@ -46,8 +46,7 @@ public class BankAccountController {
     @PostMapping("getByIds")
     public List<BankAccountResponse> getByIds(@RequestBody Set<Long> ids) {
         return StreamSupport
-                .stream(bankAccountService
-                .findByIds(ids).spliterator(), false)
+                .stream(bankAccountService.getByIds(ids).spliterator(), false)
                 .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
     }

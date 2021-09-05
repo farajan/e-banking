@@ -4,7 +4,7 @@ import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
 import com.example.ebanking.user.dto.UserResponse;
-import com.example.ebanking.user.service.webclient.BankWebClient;
+import com.example.ebanking.user.service.webclient.BankAccountWebClient;
 import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import java.util.Set;
 public class UserMapper implements Mapper<User, UserResponse> {
 
     private final InsuranceWebClient insuranceWebClient;
-    private final BankWebClient bankWebClient;
+    private final BankAccountWebClient bankAccountWebClient;
 
     @Override
     public UserResponse map(User entity) {
@@ -36,7 +36,7 @@ public class UserMapper implements Mapper<User, UserResponse> {
 
     private List<BankAccountResponse> getBankAccountList(User user) {
         Set<Long> bankAccountIds = user.getBankAccountIds();
-        return bankAccountIds.isEmpty() ? Collections.emptyList() : bankWebClient.getByIds(bankAccountIds);
+        return bankAccountIds.isEmpty() ? Collections.emptyList() : bankAccountWebClient.getByIds(bankAccountIds);
     }
 
     private List<InsuranceResponse> getInsuranceList(User user) {

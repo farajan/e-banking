@@ -1,10 +1,9 @@
-package com.example.ebanking.bankaccount.JUnit;
+package com.example.ebanking.bankaccount.service;
 
 
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
 import com.example.ebanking.bankaccount.dto.BankAccountRequest;
-import com.example.ebanking.bankaccount.service.BankAccountService;
 import com.example.ebanking.bankaccount.service.proxy.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;

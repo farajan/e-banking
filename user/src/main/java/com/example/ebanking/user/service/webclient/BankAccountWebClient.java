@@ -15,14 +15,14 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class BankWebClient {
+public class BankAccountWebClient {
 
     private final WebClient webClient;
 
     @Value("${ebanking.bankAccountService.URL}")
     private String bankAccountServiceURL;
 
-    public BankAccountResponse findById(long id) {
+    public BankAccountResponse getById(long id) {
         return webClient
                 .get()
                 .uri(bankAccountServiceURL + id)

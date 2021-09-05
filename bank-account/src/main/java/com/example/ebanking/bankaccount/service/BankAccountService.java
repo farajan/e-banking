@@ -37,7 +37,7 @@ public class BankAccountService {
     }
 
 
-    public Iterable<BankAccount> findByIds(Set<Long> ids) {
+    public Iterable<BankAccount> getByIds(Set<Long> ids) {
         return bankAccountRepository.findAllById(ids);
     }
 

@@ -22,7 +22,7 @@ public class InsuranceWebClient {
     @Value("${ebanking.insuranceService.URL}")
     private String insuranceServiceURL;
 
-    public InsuranceResponse findById(long id) {
+    public InsuranceResponse getById(long id) {
         return webClient
                 .get()
                 .uri(insuranceServiceURL + id)
