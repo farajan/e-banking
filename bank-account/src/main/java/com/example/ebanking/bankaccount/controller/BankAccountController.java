@@ -28,7 +28,7 @@ public class BankAccountController {
     @GetMapping
     public Page<BankAccountResponse> getAll(@RequestParam int page, @RequestParam int limit) {
         List<BankAccountResponse> bankAccountResponseList = bankAccountService
-                .findAll(PageRequest.of(page,limit))
+                .getAll(PageRequest.of(page,limit))
                 .stream()
                 .map(bankAccountMapper::map)
                 .collect(Collectors.toList());
@@ -39,7 +39,7 @@ public class BankAccountController {
     @GetMapping("{id}")
     public BankAccountResponse getById(@PathVariable long id) {
         return bankAccountMapper.map(
-                bankAccountService.findById(id)
+                bankAccountService.getById(id)
         );
     }
 

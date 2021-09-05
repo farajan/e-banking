@@ -20,11 +20,11 @@ public class InsuranceService {
     private final InsuranceRepository insuranceRepository;
     private final UserServiceProxy userServiceProxy;
 
-    public Page<Insurance> findAll(Pageable pageable) {
+    public Page<Insurance> getAll(Pageable pageable) {
         return insuranceRepository.findAll(pageable);
     }
 
-    public Insurance findById(long id) {
+    public Insurance getById(long id) {
         Insurance insurance = insuranceRepository.findById(id).orElse(null);
         if (insurance == null) {
             throw new IllegalStateException("Insurance with id: " + id + " doesn't exists.");
@@ -32,7 +32,7 @@ public class InsuranceService {
         return insurance;
     }
 
-    public Iterable<Insurance> findByIds(Set<Long> ids) {
+    public Iterable<Insurance> getByIds(Set<Long> ids) {
         return insuranceRepository.findAllById(ids);
     }
 

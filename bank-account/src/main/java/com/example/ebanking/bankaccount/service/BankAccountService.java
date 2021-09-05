@@ -23,12 +23,12 @@ public class BankAccountService {
     private final BankAccountRepository bankAccountRepository;
     private final UserServiceProxy userServiceProxy;
 
-    public Page<BankAccount> findAll(Pageable pageable) {
+    public Page<BankAccount> getAll(Pageable pageable) {
         return bankAccountRepository.findAll(pageable);
     }
 
     @Transactional
-    public BankAccount findById(long id) {
+    public BankAccount getById(long id) {
         final BankAccount bankAccount = bankAccountRepository.findById(id).orElse(null);
         if (bankAccount == null) {
             throw new IllegalStateException("Bank account with id: " + id + " doesn't exists.");

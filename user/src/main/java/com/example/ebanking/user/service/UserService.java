@@ -25,7 +25,7 @@ public class UserService {
     private final BankWebClient bankWebClient;
     private final PasswordEncoder passwordEncoder;
 
-    public Page<User> findAll(Pageable pageable) {
+    public Page<User> getAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 

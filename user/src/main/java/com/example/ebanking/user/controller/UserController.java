@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping
     public Page<UserResponse> getAll(@RequestParam int page, @RequestParam int limit) {
         List<UserResponse> userResponseList = userService
-                .findAll(PageRequest.of(page, limit))
+                .getAll(PageRequest.of(page, limit))
                 .stream()
                 .map(userMapper::map)
                 .collect(Collectors.toList());

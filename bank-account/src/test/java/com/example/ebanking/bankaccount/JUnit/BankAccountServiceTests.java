@@ -45,11 +45,11 @@ public class BankAccountServiceTests {
 
         when(bankAccountRepository.findAll(pageRequest)).thenReturn(bankAccountPage);
 
-        bankAccountService.findAll(pageRequest);
+        bankAccountService.getAll(pageRequest);
 
         verify(bankAccountRepository, times(1)).findAll(pageRequest);
 
-        assertThat("Size is not equal to 3", bankAccountService.findAll(pageRequest).getTotalElements(), is(3L));
+        assertThat("Size is not equal to 3", bankAccountService.getAll(pageRequest).getTotalElements(), is(3L));
     }
 
     @Test
@@ -58,11 +58,11 @@ public class BankAccountServiceTests {
         bankAccount.setBankAccountId(1L);
         when(bankAccountRepository.findById(1L)).thenReturn(Optional.of(bankAccount));
 
-        bankAccountService.findById(1L);
+        bankAccountService.getById(1L);
 
         verify(bankAccountRepository, times(1)).findById(1L);
 
-        assertThat("Bank account ID is not 1L", bankAccountService.findById(1L).getBankAccountId(), is(1L));
+        assertThat("Bank account ID is not 1L", bankAccountService.getById(1L).getBankAccountId(), is(1L));
     }
 
     @Test

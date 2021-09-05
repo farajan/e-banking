@@ -44,11 +44,11 @@ public class InsuranceServiceTests {
 
         when(insuranceRepository.findAll(pageRequest)).thenReturn(insurancePage);
 
-        insuranceService.findAll(pageRequest);
+        insuranceService.getAll(pageRequest);
 
         verify(insuranceRepository, times(1)).findAll(pageRequest);
 
-        assertThat("Size is not equal to 3", insuranceService.findAll(pageRequest).getTotalElements(), is(3L));
+        assertThat("Size is not equal to 3", insuranceService.getAll(pageRequest).getTotalElements(), is(3L));
     }
 
     @Test
@@ -57,11 +57,11 @@ public class InsuranceServiceTests {
         insurance.setInsuranceId(1L);
         when(insuranceRepository.findById(1L)).thenReturn(Optional.of(insurance));
 
-        insuranceService.findById(1L);
+        insuranceService.getById(1L);
 
         verify(insuranceRepository, times(1)).findById(1L);
 
-        assertThat("Insurance ID is not 1L", insuranceService.findById(1L).getInsuranceId(), is(1L));
+        assertThat("Insurance ID is not 1L", insuranceService.getById(1L).getInsuranceId(), is(1L));
     }
 
     @Test

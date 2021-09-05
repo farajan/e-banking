@@ -28,7 +28,7 @@ public class InsuranceController {
     @GetMapping
     public Page<InsuranceResponse> getAll(@RequestParam int page, @RequestParam int limit) {
         List<InsuranceResponse> insuranceResponseList = insuranceService
-                .findAll(PageRequest.of(page, limit))
+                .getAll(PageRequest.of(page, limit))
                 .stream()
                 .map(insuranceMapper::map)
                 .collect(Collectors.toList());
@@ -39,7 +39,7 @@ public class InsuranceController {
     @GetMapping("{id}")
     public InsuranceResponse getById(@PathVariable long id) {
         return insuranceMapper.map(
-                insuranceService.findById(id)
+                insuranceService.getById(id)
         );
     }
 
@@ -47,7 +47,7 @@ public class InsuranceController {
     public List<InsuranceResponse> getByIds(@RequestBody Set<Long> ids) {
         return StreamSupport
                 .stream(insuranceService
-                .findByIds(ids).spliterator(), false)
+                .getByIds(ids).spliterator(), false)
                 .map(insuranceMapper::map)
                 .collect(Collectors.toList());
     }

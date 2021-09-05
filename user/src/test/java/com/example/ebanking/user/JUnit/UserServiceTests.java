@@ -55,11 +55,11 @@ public class UserServiceTests {
 
         when(userRepository.findAll(pageRequest)).thenReturn(userPage);
 
-        userService.findAll(pageRequest);
+        userService.getAll(pageRequest);
 
         verify(userRepository, times(1)).findAll(pageRequest);
 
-        assertThat("Size is not equal to 3", userService.findAll(pageRequest).getTotalElements(), is(3L));
+        assertThat("Size is not equal to 3", userService.getAll(pageRequest).getTotalElements(), is(3L));
     }
 
     @Test
@@ -68,11 +68,11 @@ public class UserServiceTests {
         user.setUserId(1L);
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        userService.findById(1L);
+        userService.getById(1L);
 
         verify(userRepository, times(1)).findById(1L);
 
-        assertThat("User ID is not 1L", userService.findById(1L).getUserId(), is(1L));
+        assertThat("User ID is not 1L", userService.getById(1L).getUserId(), is(1L));
     }
 
     @Test
