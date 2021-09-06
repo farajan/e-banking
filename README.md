@@ -12,6 +12,7 @@ There is Zull server, Eureka server and three services: User, Insurance, BankAcc
 - **Eureka server** (also Discovery Server) registered all available instances of all services and Zuul server. Eureka provide information about available services to the Zuul server which needs these information for loadbalancing.
 
 There is also a common package that contains all the common dependencies.
+
 As database is used **H2 in-memory database** in all services, so no configuration or installation is required to run the project.
 
 ## Architecture
