@@ -1,6 +1,6 @@
 # E-banking
 
-> :warning: **This project is not yet finish**: for e.g. Integration testing, Javadoc, exception handling, README install manual
+> :warning: **This project is not yet finish**: for e.g. Integration testing, Javadoc, exception handling
 
 Example of simple Spring Boot microservices project using Netflix Eureka and Zuul.
 
@@ -59,5 +59,11 @@ http://localhost:8762/bankAccount?page=0&limit=20 - get first 20 records of all 
 http://localhost:8762/insurance?page=0&limit=20 - get first 20 records of all insurances
 
 http://localhost:8762/user?page=0&limit=20 - get first 20 records of all users
+
+
+## Install manual (intellij)
+- Clone code to your local repository: `git clone -b master https://github.com/farajan/e-banking.git`
+- In intellij go to `File > Open`, then select e-banking file and click to `Open`
+- Open `Services` tab (`View > Tool Windows > Services`) and run all Spring Boot applications
   
   
