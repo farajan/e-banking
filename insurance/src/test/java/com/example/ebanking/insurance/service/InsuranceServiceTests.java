@@ -3,7 +3,7 @@ package com.example.ebanking.insurance.service;
 
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
-import com.example.ebanking.insurance.dto.InsuranceRequest;
+import com.example.ebanking.insurance.dto.InsuranceCreateRequest;
 import com.example.ebanking.insurance.service.proxy.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,13 +65,13 @@ public class InsuranceServiceTests {
 
     @Test
     public void create_shouldPass() {
-        InsuranceRequest insuranceRequest = new InsuranceRequest(
+        InsuranceCreateRequest insuranceCreateRequest = new InsuranceCreateRequest(
                 "Car",
                 "Under 1 million czk",
                 9000
         );
 
-        insuranceService.create(insuranceRequest);
+        insuranceService.create(insuranceCreateRequest);
 
         Insurance insurance = new Insurance();
         insurance.setType("Car");

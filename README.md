@@ -16,10 +16,10 @@ There is also a common package that contains all the common dependencies.
 As database is used **H2 in-memory database** in all services, so no configuration or installation is required to run the project.
 
 ## Architecture
-![Screenshot](architecture.png)
+![Architecture](architecture.png)
 
 ## Relationship between microservices
-![Screenshot](relationship.png)
+![Relationship](relationship.png)
 
 ## REST API
 ### User - /user

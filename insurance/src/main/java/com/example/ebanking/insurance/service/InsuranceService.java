@@ -2,7 +2,7 @@ package com.example.ebanking.insurance.service;
 
 import com.example.ebanking.insurance.db.entity.Insurance;
 import com.example.ebanking.insurance.db.repository.InsuranceRepository;
-import com.example.ebanking.insurance.dto.InsuranceRequest;
+import com.example.ebanking.insurance.dto.InsuranceCreateRequest;
 import com.example.ebanking.insurance.service.proxy.UserServiceProxy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,11 +37,11 @@ public class InsuranceService {
     }
 
     @Transactional
-    public Insurance create(@Valid InsuranceRequest insuranceRequest) {
+    public Insurance create(@Valid InsuranceCreateRequest insuranceCreateRequest) {
         Insurance insurance = new Insurance();
-        insurance.setType(insuranceRequest.getType());
-        insurance.setNote(insuranceRequest.getNote());
-        insurance.setPrice(insuranceRequest.getPrice());
+        insurance.setType(insuranceCreateRequest.getType());
+        insurance.setNote(insuranceCreateRequest.getNote());
+        insurance.setPrice(insuranceCreateRequest.getPrice());
 
         return insuranceRepository.save(insurance);
     }

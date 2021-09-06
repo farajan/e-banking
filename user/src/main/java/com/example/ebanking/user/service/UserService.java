@@ -1,7 +1,7 @@
 package com.example.ebanking.user.service;
 
 import com.example.ebanking.user.db.entity.User;
-import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.dto.UserCreateRequest;
 import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.service.webclient.BankAccountWebClient;
 import com.example.ebanking.user.service.webclient.InsuranceWebClient;
@@ -37,14 +37,14 @@ public class UserService {
     }
 
     @Transactional
-    public User create(@Valid UserRequest userRequest) {
+    public User create(@Valid UserCreateRequest userCreateRequest) {
         User user = new User();
-        user.setFirstName(userRequest.getFirstName());
-        user.setLastName(userRequest.getLastName());
-        user.setUsername(userRequest.getUsername());
-        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        user.setEmail(userRequest.getEmail());
-        user.setBirthday(userRequest.getBirthday());
+        user.setFirstName(userCreateRequest.getFirstName());
+        user.setLastName(userCreateRequest.getLastName());
+        user.setUsername(userCreateRequest.getUsername());
+        user.setPassword(passwordEncoder.encode(userCreateRequest.getPassword()));
+        user.setEmail(userCreateRequest.getEmail());
+        user.setBirthday(userCreateRequest.getBirthday());
 
         return userRepository.save(user);
     }

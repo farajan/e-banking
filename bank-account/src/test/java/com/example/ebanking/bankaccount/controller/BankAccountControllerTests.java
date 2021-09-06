@@ -2,7 +2,7 @@ package com.example.ebanking.bankaccount.controller;
 
 import com.example.ebanking.bankaccount.controller.mapper.BankAccountMapper;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
-import com.example.ebanking.bankaccount.dto.BankAccountRequest;
+import com.example.ebanking.bankaccount.dto.BankAccountCreateRequest;
 import com.example.ebanking.bankaccount.dto.BankAccountResponse;
 import com.example.ebanking.bankaccount.service.BankAccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -99,7 +99,7 @@ public class BankAccountControllerTests {
 
     @Test
     public void create_shouldPass() throws Exception {
-        final BankAccountRequest request = createBankAccountRequest();
+        final BankAccountCreateRequest request = createBankAccountRequest();
         final BankAccount bankAccount = createBankAccount();
         final BankAccountResponse response = createBankAccountResponse();
 
@@ -140,8 +140,8 @@ public class BankAccountControllerTests {
         );
     }
 
-    private BankAccountRequest createBankAccountRequest() {
-        return new BankAccountRequest(
+    private BankAccountCreateRequest createBankAccountRequest() {
+        return new BankAccountCreateRequest(
                 "12345",
                 true,
                 8000

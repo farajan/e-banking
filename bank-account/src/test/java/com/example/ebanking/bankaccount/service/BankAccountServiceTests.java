@@ -3,7 +3,7 @@ package com.example.ebanking.bankaccount.service;
 
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
-import com.example.ebanking.bankaccount.dto.BankAccountRequest;
+import com.example.ebanking.bankaccount.dto.BankAccountCreateRequest;
 import com.example.ebanking.bankaccount.service.proxy.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,15 +66,16 @@ public class BankAccountServiceTests {
 
     @Test
     public void create_shouldPass() {
-        BankAccountRequest bankAccount = new BankAccountRequest(
+        BankAccountCreateRequest bankAccountCreateRequest = new BankAccountCreateRequest(
                 "123456",
                 true,
                 124
         );
 
-        bankAccountService.create(bankAccount);
+        bankAccountService.create(bankAccountCreateRequest);
 
 //        verify(bankAccountRepository, times(1)).save(bankAccount);
+        // TODO
     }
 
     @Test

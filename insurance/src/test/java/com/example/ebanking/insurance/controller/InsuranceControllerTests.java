@@ -2,7 +2,7 @@ package com.example.ebanking.insurance.controller;
 
 import com.example.ebanking.insurance.controller.mapper.InsuranceMapper;
 import com.example.ebanking.insurance.db.entity.Insurance;
-import com.example.ebanking.insurance.dto.InsuranceRequest;
+import com.example.ebanking.insurance.dto.InsuranceCreateRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
 import com.example.ebanking.insurance.service.InsuranceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -98,7 +98,7 @@ public class InsuranceControllerTests {
 
     @Test
     public void create_shouldPass() throws Exception {
-        InsuranceRequest request = createInsuranceRequest();
+        InsuranceCreateRequest request = createInsuranceRequest();
         Insurance insurance = createInsurance();
         InsuranceResponse response = createInsuranceResponse();
 
@@ -138,8 +138,8 @@ public class InsuranceControllerTests {
         );
     }
 
-    private InsuranceRequest createInsuranceRequest() {
-        return new InsuranceRequest(
+    private InsuranceCreateRequest createInsuranceRequest() {
+        return new InsuranceCreateRequest(
                 "Car",
                 "No note",
                 9000

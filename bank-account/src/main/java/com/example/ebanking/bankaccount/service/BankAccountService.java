@@ -1,6 +1,6 @@
 package com.example.ebanking.bankaccount.service;
 
-import com.example.ebanking.bankaccount.dto.BankAccountRequest;
+import com.example.ebanking.bankaccount.dto.BankAccountCreateRequest;
 import com.example.ebanking.bankaccount.db.entity.BankAccount;
 import com.example.ebanking.bankaccount.db.repository.BankAccountRepository;
 import com.example.ebanking.bankaccount.service.proxy.UserServiceProxy;
@@ -42,11 +42,11 @@ public class BankAccountService {
     }
 
     @Transactional
-    public BankAccount create(@Valid BankAccountRequest bankAccountRequest) {
+    public BankAccount create(@Valid BankAccountCreateRequest bankAccountCreateRequest) {
         BankAccount bankAccount = new BankAccount();
-        bankAccount.setAccountNumber(bankAccountRequest.getAccountNumber());
-        bankAccount.setActive(bankAccountRequest.isActive());
-        bankAccount.setBalance(bankAccountRequest.getBalance());
+        bankAccount.setAccountNumber(bankAccountCreateRequest.getAccountNumber());
+        bankAccount.setActive(bankAccountCreateRequest.isActive());
+        bankAccount.setBalance(bankAccountCreateRequest.getBalance());
         bankAccount.setCreated(LocalDateTime.now());
 
         return bankAccountRepository.save(bankAccount);

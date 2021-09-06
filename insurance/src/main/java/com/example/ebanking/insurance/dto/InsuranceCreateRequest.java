@@ -6,10 +6,10 @@ import lombok.Value;
 import javax.validation.constraints.NotBlank;
 
 @Value
-public class InsuranceRequest {
-    @NotBlank
+public class InsuranceCreateRequest {
+    @NotBlank(message = "Type is mandatory")
     String type;
-    @NullOrNotBlank
+    @NullOrNotBlank(message = "Note should be null or not blank string")
     String note;
     int price;
 }

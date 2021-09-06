@@ -1,7 +1,7 @@
 package com.example.ebanking.bankaccount.controller;
 
 import com.example.ebanking.bankaccount.controller.mapper.BankAccountMapper;
-import com.example.ebanking.bankaccount.dto.BankAccountRequest;
+import com.example.ebanking.bankaccount.dto.BankAccountCreateRequest;
 import com.example.ebanking.bankaccount.dto.BankAccountResponse;
 import com.example.ebanking.bankaccount.service.BankAccountService;
 import lombok.RequiredArgsConstructor;
@@ -53,9 +53,9 @@ public class BankAccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BankAccountResponse create(@RequestBody @Valid BankAccountRequest bankAccountRequest) {
+    public BankAccountResponse create(@RequestBody @Valid BankAccountCreateRequest bankAccountCreateRequest) {
         return bankAccountMapper.map(
-                bankAccountService.create(bankAccountRequest)
+                bankAccountService.create(bankAccountCreateRequest)
         );
     }
 

@@ -4,7 +4,7 @@ import com.example.ebanking.user.controller.mapper.UserMapper;
 import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
-import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.dto.UserCreateRequest;
 import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,7 +86,7 @@ public class UserControllerTests {
 
     @Test
     public void create_shouldPass() throws Exception {
-        final UserRequest request = createUserRequest();
+        final UserCreateRequest request = createUserRequest();
         final User user = createUser();
         final UserResponse response = createUserResponse();
 
@@ -233,7 +233,7 @@ public class UserControllerTests {
         user.setFirstName("Tom");
         user.setLastName("Hardy");
         user.setUsername("Tom");
-        user.setPassword("drsnyTom");
+        user.setPassword("dummyPassword");
         user.setEmail("tomik@gmail.com");
         user.setBirthday(LocalDateTime.MAX);
         user.setInsuranceIds(new HashSet<>());
@@ -254,12 +254,12 @@ public class UserControllerTests {
         );
     }
 
-    private UserRequest createUserRequest() {
-        return new UserRequest(
+    private UserCreateRequest createUserRequest() {
+        return new UserCreateRequest(
                 "Tom",
                 "Hardy",
                 "drsnyTom",
-                "passwd",
+                "dummyPassword",
                 "tomik@gmail.com",
                 LocalDateTime.now()
         );

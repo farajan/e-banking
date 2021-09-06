@@ -5,7 +5,7 @@ import com.example.ebanking.user.db.entity.User;
 import com.example.ebanking.user.db.repository.UserRepository;
 import com.example.ebanking.user.dto.BankAccountResponse;
 import com.example.ebanking.user.dto.InsuranceResponse;
-import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.dto.UserCreateRequest;
 import com.example.ebanking.user.service.webclient.BankAccountWebClient;
 import com.example.ebanking.user.service.webclient.InsuranceWebClient;
 import org.junit.Test;
@@ -78,7 +78,7 @@ public class UserServiceTests {
     public void create_shouldPass() {
         LocalDateTime now = LocalDateTime.now();
 
-        UserRequest insuranceRequest = new UserRequest(
+        UserCreateRequest insuranceRequest = new UserCreateRequest(
                 "firstName",
                 "lastName",
                 "username",

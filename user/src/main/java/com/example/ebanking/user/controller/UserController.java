@@ -1,6 +1,6 @@
 package com.example.ebanking.user.controller;
 
-import com.example.ebanking.user.dto.UserRequest;
+import com.example.ebanking.user.dto.UserCreateRequest;
 import com.example.ebanking.user.dto.UserResponse;
 import com.example.ebanking.user.service.UserService;
 import com.example.ebanking.user.controller.mapper.UserMapper;
@@ -43,9 +43,9 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@RequestBody @Valid UserRequest userRequest) {
+    public UserResponse create(@RequestBody @Valid UserCreateRequest userCreateRequest) {
         return userMapper.map(
-                userService.create(userRequest)
+                userService.create(userCreateRequest)
         );
     }
 

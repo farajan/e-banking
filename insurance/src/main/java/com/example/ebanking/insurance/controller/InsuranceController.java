@@ -2,7 +2,7 @@ package com.example.ebanking.insurance.controller;
 
 import com.example.ebanking.insurance.controller.mapper.InsuranceMapper;
 import com.example.ebanking.insurance.service.InsuranceService;
-import com.example.ebanking.insurance.dto.InsuranceRequest;
+import com.example.ebanking.insurance.dto.InsuranceCreateRequest;
 import com.example.ebanking.insurance.dto.InsuranceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -53,9 +53,9 @@ public class InsuranceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InsuranceResponse create(@RequestBody @Valid InsuranceRequest insuranceRequest) {
+    public InsuranceResponse create(@RequestBody @Valid InsuranceCreateRequest insuranceCreateRequest) {
         return insuranceMapper.map(
-                insuranceService.create(insuranceRequest)
+                insuranceService.create(insuranceCreateRequest)
         );
     }
 
