@@ -1,15 +1,15 @@
 # E-banking
 
-> :warning: **This project is not yet finish**: for e.g. Integration testing, Javadoc, exception handling
+> :warning: **This project is not finished yet**: for e.g. Integration testing, Javadoc, exception handling
 
-Example of simple Spring Boot microservices project using Netflix Eureka and Zuul. This project is example so no emphasis to data relevance.
+Example of simple Spring Boot microservices project using Netflix Eureka and Zuul. This project is the example so there is no emphasis to data relevance.
 
 There is Zull server, Eureka server and three services: User, Insurance, BankAccount.
 - **User Service** manages all customers of the bank and is running on the port **8080**.
 - **Insurance Service** manages all insurance that the bank provides to its customers and is running on the port **8082**.
 - **BankAccount Service** manages the account of all customers and is running on the port **8081**.
-- **Zuul API** is gateway (LoadBalancer) for all services. The client communicates with this Zuul API and Zuul forward the request to a specific service.
-- **Eureka server** (also Discovery Server) registered all available instances of all services and Zuul server. Eureka provide information about available services to the Zuul server which needs these information for loadbalancing.
+- **Zuul API** is gateway (LoadBalancer) for all services. The client communicates with this Zuul API and Zuul forward the request to a specific service. Zuul is running on the port **8762**.
+- **Eureka server** (also Discovery Server) registers all available instances of all services and Zuul server. Eureka provides information about available services to the Zuul server, which needs this information for loadbalancing. Eureka is running on the port **8761**.
 
 There is also a common package that contains all the common dependencies.
 
