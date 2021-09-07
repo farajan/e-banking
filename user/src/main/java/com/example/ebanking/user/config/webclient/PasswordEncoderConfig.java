@@ -1,4 +1,4 @@
-package com.example.ebanking.user.config;
+package com.example.ebanking.user.config.webclient;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

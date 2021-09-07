@@ -12,14 +12,17 @@ public class LoggingFilter extends ZuulFilter {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private static final String FILTER_TYPE = "pre";
+    private static final int FILTER_ORDER = 1;
+
     @Override
     public String filterType() {
-        return "pre";
+        return FILTER_TYPE;
     }
 
     @Override
     public int filterOrder() {
-        return 1;
+        return FILTER_ORDER;
     }
 
     @Override
