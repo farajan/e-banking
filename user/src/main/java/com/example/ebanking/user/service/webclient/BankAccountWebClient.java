@@ -19,13 +19,16 @@ public class BankAccountWebClient {
 
     private final WebClient webClient;
 
-    @Value("${ebanking.bankAccountService.URL}")
-    private String bankAccountServiceURL;
+    @Value("${ebanking.zuulServer.URL}")
+    private String zuulServerURL;
+
+    @Value("${ebanking.bankAccountService.PATH}")
+    private String bankAccountServicePATH;
 
     public BankAccountResponse getById(long id) {
         return webClient
                 .get()
-                .uri(bankAccountServiceURL + id)
+                .uri(zuulServerURL + bankAccountServicePATH + id)
                 .retrieve()
                 .onStatus(
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
@@ -39,7 +42,7 @@ public class BankAccountWebClient {
     public List<BankAccountResponse> getByIds(Set<Long> bankAccountIds) {
         return webClient
                 .post()
-                .uri(bankAccountServiceURL + "getByIds")
+                .uri(zuulServerURL + bankAccountServicePATH + "getByIds")
                 .body(Mono.just(bankAccountIds), new ParameterizedTypeReference<Set<Long>>() {})
                 .retrieve()
                 .onStatus(

@@ -19,13 +19,16 @@ public class InsuranceWebClient {
 
     private final WebClient webClient;
 
-    @Value("${ebanking.insuranceService.URL}")
-    private String insuranceServiceURL;
+    @Value("${ebanking.zuulServer.URL}")
+    private String zuulServerURL;
+
+    @Value("${ebanking.insuranceService.PATH}")
+    private String insuranceServicePATH;
 
     public InsuranceResponse getById(long id) {
         return webClient
                 .get()
-                .uri(insuranceServiceURL + id)
+                .uri(zuulServerURL + insuranceServicePATH + id)
                 .retrieve()
                 .onStatus(
                         httpStatus -> httpStatus.value() != HttpStatus.OK.value(),
@@ -39,7 +42,7 @@ public class InsuranceWebClient {
     public List<InsuranceResponse> getByIds(Set<Long> insuranceIds) {
         return webClient
                 .post()
-                .uri(insuranceServiceURL + "getByIds")
+                .uri(zuulServerURL + insuranceServicePATH + "getByIds")
                 .body(Mono.just(insuranceIds), new ParameterizedTypeReference<Set<Long>>() {})
                 .retrieve()
                 .onStatus(
