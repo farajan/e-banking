@@ -1,6 +1,29 @@
 version: '3.8'
 services:
 
+  rabbitmq:
+    image: rabbitmq:3.5.3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - e-banking-network
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      STORAGE_TYPE: mem
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    ports:
+      - "9411:9411"
+    restart: always
+    depends_on:
+      - rabbitmq
+    networks:
+      - e-banking-network
+
   netflix-eureka-naming-server:
     image: e-banking/eureka:0.0.1-SNAPSHOT
 #    build:
@@ -22,6 +45,8 @@ services:
     restart: always
     depends_on:
       - netflix-eureka-naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - e-banking-network
 
@@ -35,6 +60,8 @@ services:
     restart: always
     depends_on:
       - netflix-eureka-naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - e-banking-network
 
@@ -48,6 +75,8 @@ services:
     restart: always
     depends_on:
       - netflix-eureka-naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - e-banking-network
 
@@ -61,6 +90,8 @@ services:
     restart: always
     depends_on:
       - netflix-eureka-naming-server
+      - rabbitmq
+      - zipkin-server
     networks:
       - e-banking-network
 

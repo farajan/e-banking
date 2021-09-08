@@ -1,6 +1,8 @@
 package com.example.ebanking.bankaccount.db.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
