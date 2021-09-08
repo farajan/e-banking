@@ -40,6 +40,8 @@ services:
 #    build:
 #      context: netflix-zuul-api-gateway-server
 #      dockerfile: Dockerfile
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
       - "8762:8762"
     restart: always
@@ -55,8 +57,10 @@ services:
 #    build:
 #      context: user-service
 #      dockerfile: Dockerfile
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
-      - "8000:8000"
+      - "8080:8080"
     restart: always
     depends_on:
       - netflix-eureka-naming-server
@@ -70,8 +74,10 @@ services:
 #    build:
 #      context: bank-account-service
 #      dockerfile: Dockerfile
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
-      - "8001:8001"
+      - "8081:8081"
     restart: always
     depends_on:
       - netflix-eureka-naming-server
@@ -85,8 +91,10 @@ services:
 #    build:
 #      context: insurance-service
 #      dockerfile: Dockerfile
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
     ports:
-      - "8002:8002"
+      - "8082:8082"
     restart: always
     depends_on:
       - netflix-eureka-naming-server
