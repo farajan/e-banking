@@ -1,6 +1,6 @@
 package com.example.ebanking.insurance.dto;
 
-import com.example.ebanking.common.NullOrNotBlank;
+import com.example.ebanking.insurance.annotation.NullOrNotBlank;
 import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
